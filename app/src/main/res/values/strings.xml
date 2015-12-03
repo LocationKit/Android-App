@@ -10,6 +10,6 @@
     <string name="enable_tracking">Enable Tracking</string>
     <string name="enable_notifications">Enable Notifications</string>
     <string name="computing">We are currently computing your coordinates and will have your first location in just a few minutes…</string>
-    <string name="how_does_this_work">How does this work?</string>
+    <string name="how_does_this_work">How does LocationKit work?</string>
     <string name="export_db">Export Database</string>
 </resources>
