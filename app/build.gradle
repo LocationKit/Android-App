@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "locationkitapp.locationkit.locationkitapp"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 2
         versionName "3.0.6"
