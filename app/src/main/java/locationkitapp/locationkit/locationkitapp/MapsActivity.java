@@ -5,6 +5,7 @@
 package locationkitapp.locationkit.locationkitapp;
 
 
+import android.Manifest;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
@@ -22,6 +24,10 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -37,7 +43,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import android.support.design.widget.Snackbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -70,7 +76,7 @@ import socialradar.locationkit.internal.manager.LKDataManager;
 import socialradar.locationkit.logger.AndroidLogger;
 import socialradar.locationkit.model.LKPlace;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,ActivityCompat.OnRequestPermissionsResultCallback {
     private static final String BUNDLE_KEY_LOCATION = "currentLocation";
 
     private static final HandlerThread THREAD;
@@ -101,6 +107,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean stopShowingLocationUpdates = false;
     private boolean trackingEnabled = true;
     private boolean notificationEnabled = true;
+    private View mLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +116,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        mLayout = findViewById(R.id.main_layout);
         loadPrefs();
         updateLocation();
         mListView = (ListView)findViewById(R.id.listView);
@@ -498,7 +505,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMyLocationEnabled(true);
+        Log.v(LOG_TAG, "map is ready");
+        boolean hasLocationPermissions = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (hasLocationPermissions) {
+            Log.v(LOG_TAG,"has location permissions");
+            mMap.setMyLocationEnabled(true);
+        } else {
+            Log.v(LOG_TAG, "permission denied");
+               Snackbar.make(mLayout, "We need access to your location to function.",
+                        Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Request the permission
+                        ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);;
+                    }
+                }).show();
+        }
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -618,6 +640,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 100) {
+            boolean granted = true;
+            for (int i :grantResults) {
+                if (i == PackageManager.PERMISSION_DENIED) {
+                    granted = false;
+                }
+            }
+            if (!granted) {
+                Snackbar.make(mLayout, "Location permission request was denied.",
+                        Snackbar.LENGTH_SHORT)
+                        .show();
+                Log.e(LOG_TAG, "Permission was denied");
+            } else {
+                mMap.setMyLocationEnabled(true);
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private BroadcastReceiver visitUpdateReceiver = new BroadcastReceiver() {

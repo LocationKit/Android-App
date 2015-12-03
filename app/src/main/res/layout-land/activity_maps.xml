@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="locationkitapp.locationkit.locationkitapp.MapsActivity"
     android:orientation="vertical"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffafafaf">
