@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/date_sub_header"
+    android:text="Nov 30, 2015"
+    android:textAllCaps="true"
+    android:background="#efe4e4e4"
+    android:textSize="@dimen/date_height"
+    android:textColor="#ff666666"
+    android:layout_width="match_parent"
+    android:gravity="bottom"
+    android:paddingLeft="10dp"
+    android:paddingBottom="2dp"
+    android:layout_height="35dp" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/visit_icon"
+        android:src="@drawable/ic_retail"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/icon_height"
+        android:layout_height="@dimen/icon_width" />
+    <LinearLayout
+        android:id="@+id/address_block"
+        android:layout_toRightOf="@+id/visit_icon"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="@dimen/address_text"
+            android:id="@+id/visit_venue_name"
+            android:text="City Sports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/address_text"
+            android:id="@+id/visit_street"
+            android:text="1111 19th ST NW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/visit_city_state_zip"
+            android:textSize="@dimen/address_text"
+            android:layout_marginTop="2dp"
+            android:text="Washington, DC 20036"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/info_block"
+        android:layout_alignStart="@+id/address_block"
+        android:layout_below="@+id/address_block"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlCompat">
+        <TextView
+            android:textSize="@dimen/info_text"
+            android:id="@+id/visit_category_subcategory"
+            android:layout_marginTop="2dp"
+            android:text="Categories: Retail - Sports Equipment and Goods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="@dimen/info_text"
+            android:id="@+id/visit_detection_method"
+            android:layout_marginTop="2dp"
+            android:text="Detection Method: Doorway Intersection"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/info_block_from_place"
+        android:layout_above="@+id/info_block"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/place_time"
+            android:text="6:01 PM"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+        <ImageView
+            android:id="@+id/place_icon"
+            android:src="@drawable/ic_orange_nav_pin"
+            android:layout_toRightOf="@+id/place_time"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/info_block_from_visit"
+        android:layout_above="@+id/info_block"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/visit_end_time"
+            android:text="6:01 PM"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+        <ImageView
+            android:id="@+id/visit_end_icon"
+            android:src="@drawable/ic_departure"
+            android:layout_toRightOf="@+id/visit_end_time"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_below="@+id/visit_end_time"
+            android:id="@+id/visit_start_time"
+            android:text="6:01 PM"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+        <ImageView
+            android:layout_below="@+id/visit_end_icon"
+            android:id="@+id/visit_start_icon"
+            android:src="@drawable/ic_arrival"
+            android:layout_toRightOf="@+id/visit_start_time"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+</RelativeLayout>
+    </LinearLayout>
