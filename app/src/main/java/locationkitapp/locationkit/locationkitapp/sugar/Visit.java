@@ -87,7 +87,7 @@ public class Visit extends SugarRecord<Visit> {
             } else if (visit.getPlace().getUsedEntrance()) {
                 detectionMethod = "Doorway Intersection";
             } else {
-                detectionMethod = "Polygon";
+                detectionMethod = "Building Detection";
             }
         }
     }
