@@ -45,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top"
-        android:footerDividersEnabled="false">
+        android:footerDividersEnabled="false"
+        android:elevation="4dp">
     </ListView>
     </LinearLayout>
 </LinearLayout>

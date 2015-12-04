@@ -122,7 +122,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mListView = (ListView)findViewById(R.id.listView);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setSubtitle(String.format(Locale.ENGLISH, "Version %s", BuildConfig.VERSION_NAME));
+        getSupportActionBar().setSubtitle(String.format(Locale.ENGLISH, "version %s", BuildConfig.VERSION_NAME));
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         reloadVisits();
         visitArrayAdapter = new VisitAdapter(this, mVisits);
