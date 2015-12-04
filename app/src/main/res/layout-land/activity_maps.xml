@@ -39,9 +39,9 @@
     <ListView
         android:background="#ffffffff"
         android:id="@+id/listView"
-        android:divider="#ffafafaf"
+        android:divider="#e0e0e0"
         android:headerDividersEnabled="false"
-        android:dividerHeight="2dp"
+        android:dividerHeight="0.5 dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
