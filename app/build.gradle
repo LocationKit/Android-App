@@ -21,7 +21,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 2
-        versionName "3.0.6"
+        versionName "3.0.11"
     }
     buildTypes {
         release {
@@ -43,6 +43,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.github.satyan:sugar:1.3'
-    compile ('socialradar:locationkit:3.0.9+@aar') { transitive = true }
+    compile ('socialradar:locationkit:3.0.11+@aar') { transitive = true }
 
 }
